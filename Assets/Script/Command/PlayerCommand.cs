@@ -20,7 +20,7 @@ public class PlayerCommand : MonoBehaviour
             MapControl.selected_button.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
 
             // check if a wins
-            if (GameController.CheckStone(Map.map.A, 3))
+            if (GameController.CheckStone(Map.map.A, 5))
                 Debug.Log("A wins! Yo");
 
             EnemyCommand.enemyCommand.Attack();
