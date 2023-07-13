@@ -17,11 +17,9 @@ public class PlayerCommand : MonoBehaviour
             (Map.GameMap[x, y] == Map.map.Selected))
         {
             Map.GameMap[x, y] = Map.map.A;
-            MapControl.selected_button.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
+            MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
 
-            // check if a wins
-            if (GameController.CheckStone(Map.map.A, 5))
-                Debug.Log("A wins! Yo");
+            StatusController.statusController.AttackA();
 
             EnemyCommand.enemyCommand.Attack();
         }

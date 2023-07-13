@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Status", menuName = "ScriptableObjects/Status")]
 public class Status : ScriptableObject
 {
+    public int initMaxLevel;
+    public int initMaxHp;
+    public int initMaxAtk;
+    public int initMaxDef;
+    public int initMaxExp;
+
     public int MaxLevel;
     public int MaxHp;
     public int MaxAtk;
@@ -18,10 +24,16 @@ public class Status : ScriptableObject
     // init 
     private void OnEnable()
     {
+        MaxLevel = initMaxLevel;
+        MaxHp = initMaxHp;
+        MaxAtk = initMaxAtk;
+        MaxDef = initMaxDef;
+        MaxExp = initMaxExp;
+
         Level = 1;
         Hp = MaxHp;
-        Atk = MaxAtk;
-        Def = MaxDef;
+        Atk = MaxAtk/4;
+        Def = MaxDef/4;
         Exp = 0;
     }
 
@@ -85,8 +97,8 @@ public class Status : ScriptableObject
 
             // reset status
             Hp = MaxHp;
-            Atk = MaxAtk;
-            Def = MaxDef;
+            Atk = MaxAtk/4;
+            Def = MaxDef/4;
             Exp = leftExp;
 
             // increase level

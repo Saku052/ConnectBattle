@@ -8542,6 +8542,7 @@ GameObject:
   - component: {fileID: 1010261233}
   - component: {fileID: 1010261232}
   - component: {fileID: 1010261231}
+  - component: {fileID: 1010261235}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -8637,6 +8638,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1010261235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010261230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d87a3e7df2a40e8b7516b8836f918b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a_status: {fileID: 11400000, guid: 86cc0b2f18d9e48aaaa5d88f07c12706, type: 2}
+  b_status: {fileID: 11400000, guid: 24ced492ec92343e3b8639a390c444a9, type: 2}
+  a_hp_object: {fileID: 762286477}
+  a_atk_object: {fileID: 714247876}
+  a_def_object: {fileID: 49469271}
+  a_exp_object: {fileID: 2083140910}
+  b_hp_object: {fileID: 1087143843}
+  b_atk_object: {fileID: 1966297518}
+  b_def_object: {fileID: 1192975450}
+  b_exp_object: {fileID: 1319281607}
 --- !u!1 &1026598593
 GameObject:
   m_ObjectHideFlags: 0
@@ -12724,7 +12747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ac83b7d212ae47a182e6b4a3eee4a2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 479f745a3e47e4ec88cb9c106bc593a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

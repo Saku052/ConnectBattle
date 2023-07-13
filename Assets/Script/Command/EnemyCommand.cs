@@ -21,11 +21,9 @@ public class EnemyCommand : MonoBehaviour
         if (Map.GameMap[x, y] == Map.map.None)
         {
             Map.GameMap[x, y] = Map.map.B;
-            buttonPanel.transform.GetChild(button_number).GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            buttonPanel.transform.GetChild(button_number).GetComponent<Image>().color = new Color32(203, 88, 88, 255);
 
-            // check if b wins
-            if (GameController.CheckStone(Map.map.B, 5))
-                Debug.Log("B wins! Yo");
+            StatusController.statusController.AttackB();
         }
     }
 
@@ -42,36 +40,36 @@ public class EnemyCommand : MonoBehaviour
                 {
                     Map.GameMap[i, j] = Map.map.B;  // put B
 
-                    scoreMap[i, j] += 1;
+                    scoreMap[i, j] = 1;
 
-                    if (GameController.CheckStone(Map.map.B, 2))
-                        scoreMap[i, j] += 2;
+                    if (GameController.CheckStone(Map.map.B, 5, i, j))
+                        scoreMap[i, j] += 1000;
+                    
+                    else if (GameController.CheckStone(Map.map.B, 4, i, j))
+                        scoreMap[i, j] += 40;
+                    
+                    else if (GameController.CheckStone(Map.map.B, 3, i, j))
+                        scoreMap[i, j] += 15;
 
-                    if (GameController.CheckStone(Map.map.B, 3))
-                        scoreMap[i, j] += 8;
-                    
-                    if (GameController.CheckStone(Map.map.B, 4))
-                        scoreMap[i, j] += 20;
-                    
-                    if (GameController.CheckStone(Map.map.B, 5))
-                        scoreMap[i, j] += 100;
+                    else if (GameController.CheckStone(Map.map.B, 2, i, j))
+                        scoreMap[i, j] += 5;
 
                     Map.GameMap[i, j] = Map.map.None;  // remove B
 
                     Map.GameMap[i, j] = Map.map.A;  // put A
 
-                    if (GameController.CheckStone(Map.map.A, 2))
-                        scoreMap[i, j] += 3;
+                    if (GameController.CheckStone(Map.map.A, 5, i, j))
+                        scoreMap[i, j] += 100;
                     
-                    if (GameController.CheckStone(Map.map.A, 3))
-                        scoreMap[i, j] += 15;
-                        
-                    if (GameController.CheckStone(Map.map.A, 4))
-                        scoreMap[i, j] += 30;
-                    
-                    if (GameController.CheckStone(Map.map.A, 5))
-                        scoreMap[i, j] += 60;
+                    else if (GameController.CheckStone(Map.map.A, 4, i, j))
+                        scoreMap[i, j] += 80;
 
+                    else if (GameController.CheckStone(Map.map.A, 3, i, j))
+                        scoreMap[i, j] += 30;
+
+                    else if (GameController.CheckStone(Map.map.A, 2, i, j))
+                        scoreMap[i, j] += 10;
+                    
                     Map.GameMap[i, j] = Map.map.None;  // remove A
                 }
                 else
@@ -99,6 +97,17 @@ public class EnemyCommand : MonoBehaviour
                 }
             }
         }
+
+        // show scoreMap in desending order
+        string scoreMapString = "";
+        for (int i = 0; i < scoreMap.GetLength(0); i++){
+            for (int j = 0; j < scoreMap.GetLength(1); j++){
+                scoreMapString += scoreMap[i, j] + " ";
+            }
+            scoreMapString += "\n";
+        }
+        Debug.Log(scoreMapString);
+
 
         // select random maxXY
         int randomIndex = Random.Range(0, maxXYList.Count);
