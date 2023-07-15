@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72895f98f63ec40a98533b0f285e8536, type: 3}
   m_Name: Char2Status
   m_EditorClassIdentifier: 
-  initMaxLevel: 10
-  initMaxHp: 100
+  initMaxHp: 80
   initMaxAtk: 20
-  initMaxDef: 10
-  initMaxExp: 100
-  MaxLevel: 0
-  MaxHp: 0
-  MaxAtk: 0
-  MaxDef: 0
-  MaxExp: 0
+  initMaxDef: 5
+  initMaxExp: 30
+  MaxLevel: 10
+  MaxHp: 100
+  MaxAtk: 20
+  MaxDef: 10
+  MaxExp: 30
+  ExpRate: 2.5

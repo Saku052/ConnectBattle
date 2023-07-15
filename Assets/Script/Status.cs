@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Status", menuName = "ScriptableObjects/Status")]
 public class Status : ScriptableObject
 {
-    public int initMaxLevel;
     public int initMaxHp;
     public int initMaxAtk;
     public int initMaxDef;
@@ -15,6 +14,8 @@ public class Status : ScriptableObject
     public int MaxDef;
     public int MaxExp;
 
+    public float ExpRate;
+
     private int _level;
     private int _hp;
     private int _atk;
@@ -24,7 +25,6 @@ public class Status : ScriptableObject
     // init 
     private void OnEnable()
     {
-        MaxLevel = initMaxLevel;
         MaxHp = initMaxHp;
         MaxAtk = initMaxAtk;
         MaxDef = initMaxDef;
@@ -83,25 +83,9 @@ public class Status : ScriptableObject
         } set{
             _exp = value;
             if(_exp > MaxExp){
-                LevelUp(_exp - MaxExp);
+                StatusController.statusController.Levelup(this, _exp - MaxExp);
             }
         }}
 
-        private void LevelUp(int leftExp)
-        {
-            // increase status
-            MaxHp += Level;
-            MaxAtk += Level;
-            MaxDef += Level;
-            MaxExp += Level;
-
-            // reset status
-            Hp = MaxHp;
-            Atk = MaxAtk/4;
-            Def = MaxDef/4;
-            Exp = leftExp;
-
-            // increase level
-            Level++;
-        }   
+        
 }

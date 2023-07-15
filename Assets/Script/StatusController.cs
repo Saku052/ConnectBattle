@@ -20,6 +20,15 @@ public class StatusController : MonoBehaviour
     [SerializeField] GameObject b_atk_object;
     [SerializeField] GameObject b_def_object;
     [SerializeField] GameObject b_exp_object;
+    [SerializeField] Text a_level_object;
+    [SerializeField] Text b_level_object;
+
+    // get audio source
+    [SerializeField] AudioSource audioSource;
+
+    // get audio clip
+    [SerializeField] AudioClip attackClip;
+    [SerializeField] AudioClip levelUpClip;
 
 
 
@@ -46,22 +55,20 @@ public class StatusController : MonoBehaviour
 
         UpdateValueA();
         UpdateValueB();
-
-        // Debug all status
-        Debug.Log("Level: " + a_status.Level + "\n" +
-                  "Hp: " + a_status.Hp + "\n" +
-                  "Atk: " + a_status.Atk + "\n" +
-                  "Def: " + a_status.Def + "\n" +
-                  "Exp: " + a_status.Exp + "\n");
     }
 
 
     public void AttackA()
     {
         // do damage
-        b_status.Hp -= a_status.Atk;
+        int damage = a_status.Atk - b_status.Def;
+        if (damage < 0)
+            damage = 0;
+
+        b_status.Hp -= damage;
         // gain exp
-        a_status.Exp += 40;
+        int gainExp = (int)(a_status.Atk * b_status.ExpRate);
+        b_status.Exp += gainExp;
 
         UpdateValueA();
         UpdateValueB();
@@ -70,13 +77,48 @@ public class StatusController : MonoBehaviour
     public void AttackB()
     {
         // do damage
-        a_status.Hp -= b_status.Atk;
+        int damage = b_status.Atk - a_status.Def;
+        if (damage < 0)
+            damage = 0;
+        
+        a_status.Hp -= damage;
         // gain exp
-        b_status.Exp += 40;
+        int gainExp = (int)(b_status.Atk * a_status.ExpRate);
+        a_status.Exp += gainExp;
 
         UpdateValueA();
         UpdateValueB();
     }
+
+
+    // Level up
+    public void Levelup(Status status, int exp)
+    {
+        // level up
+        status.Level += 1;
+        // update max value
+        status.MaxHp = (int)(status.MaxHp * 1.1f);
+        status.MaxAtk = (int)(status.MaxAtk * 1.1f);
+        status.MaxDef = (int)(status.MaxDef * 1.1f);
+        status.MaxExp = (int)(status.MaxExp * 1.1f);
+        // update value
+        status.Hp = status.MaxHp;
+        status.Atk = status.MaxAtk / 4;
+        status.Def = status.MaxDef / 4;
+        status.Exp = exp;
+
+        // update max value
+        UpdateMaxValueA();
+        UpdateMaxValueB();
+
+        // update value
+        UpdateValueA();
+        UpdateValueB();
+
+        // play level up sound
+        audioSource.PlayOneShot(levelUpClip);
+    }
+    
 
     // Update value A
     private void UpdateValueA()
@@ -92,6 +134,7 @@ public class StatusController : MonoBehaviour
         GetText(a_atk_object).text = a_status.Atk.ToString() + "/" + a_status.MaxAtk.ToString();
         GetText(a_def_object).text = a_status.Def.ToString() + "/" + a_status.MaxDef.ToString();
         GetText(a_exp_object).text = a_status.Exp.ToString() + "/" + a_status.MaxExp.ToString();
+        a_level_object.text = "Lv. " + a_status.Level.ToString();
     }
 
     // Update value B
@@ -108,6 +151,25 @@ public class StatusController : MonoBehaviour
         GetText(b_atk_object).text = b_status.Atk.ToString() + "/" + b_status.MaxAtk.ToString();
         GetText(b_def_object).text = b_status.Def.ToString() + "/" + b_status.MaxDef.ToString();
         GetText(b_exp_object).text = b_status.Exp.ToString() + "/" + b_status.MaxExp.ToString();
+        b_level_object.text = "Lv. " + b_status.Level.ToString();
+    }
+
+    // update MaxValue A
+    public void UpdateMaxValueA()
+    {
+        GetSlider(a_hp_object).maxValue = a_status.MaxHp;
+        GetSlider(a_atk_object).maxValue = a_status.MaxAtk;
+        GetSlider(a_def_object).maxValue = a_status.MaxDef;
+        GetSlider(a_exp_object).maxValue = a_status.MaxExp;
+    }
+
+    // update MaxValue B
+    public void UpdateMaxValueB()
+    {
+        GetSlider(b_hp_object).maxValue = b_status.MaxHp;
+        GetSlider(b_atk_object).maxValue = b_status.MaxAtk;
+        GetSlider(b_def_object).maxValue = b_status.MaxDef;
+        GetSlider(b_exp_object).maxValue = b_status.MaxExp;
     }
 
 
