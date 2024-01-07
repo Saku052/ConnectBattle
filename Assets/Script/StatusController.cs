@@ -61,14 +61,18 @@ public class StatusController : MonoBehaviour
     public void AttackA()
     {
         // do damage
-        int damage = a_status.Atk - b_status.Def;
+        float dmg_ratio = (float)a_status.Atk / (float)(a_status.Atk + b_status.Def) ;
+        int damage = (int)(a_status.Atk * dmg_ratio);
         if (damage < 0)
             damage = 0;
 
         b_status.Hp -= damage;
-        // gain exp
-        int gainExp = (int)(a_status.Atk * b_status.ExpRate);
-        b_status.Exp += gainExp;
+        b_status.Def -= (int)((float)a_status.Atk * (1.0f - dmg_ratio) * 0.2f);
+
+        // gain exp when enemy is dead
+        if (b_status.Hp <= 0)
+            a_status.Exp += b_status.MaxExp;
+
 
         UpdateValueA();
         UpdateValueB();
@@ -77,14 +81,17 @@ public class StatusController : MonoBehaviour
     public void AttackB()
     {
         // do damage
-        int damage = b_status.Atk - a_status.Def;
+        float dmg_ratio = (float)b_status.Atk / (float)(b_status.Atk + a_status.Def);
+        int damage = (int)(b_status.Atk * dmg_ratio);
         if (damage < 0)
             damage = 0;
-        
+
         a_status.Hp -= damage;
-        // gain exp
-        int gainExp = (int)(b_status.Atk * a_status.ExpRate);
-        a_status.Exp += gainExp;
+        a_status.Def -= (int)((float)b_status.Atk * (1.0f - dmg_ratio) * 0.2f);
+        
+        // gain exp when enemy is dead
+        if (a_status.Hp <= 0)
+            b_status.Exp += a_status.MaxExp;
 
         UpdateValueA();
         UpdateValueB();
@@ -97,23 +104,16 @@ public class StatusController : MonoBehaviour
         // level up
         status.Level += 1;
         // update max value
-        status.MaxHp = (int)(status.MaxHp * 1.1f);
-        status.MaxAtk = (int)(status.MaxAtk * 1.1f);
-        status.MaxDef = (int)(status.MaxDef * 1.1f);
+        status.MaxHp = (int)(status.MaxHp * 1.03f+ 9.5f);
+        status.MaxAtk = (int)(status.MaxAtk * 1.02f + 7.3f);
+        status.MaxDef = (int)(status.MaxDef * 1.02f +5.8f);
         status.MaxExp = (int)(status.MaxExp * 1.1f);
         // update value
-        status.Hp = status.MaxHp;
-        status.Atk = status.MaxAtk / 4;
-        status.Def = status.MaxDef / 4;
         status.Exp = exp;
 
         // update max value
         UpdateMaxValueA();
         UpdateMaxValueB();
-
-        // update value
-        UpdateValueA();
-        UpdateValueB();
 
         // play level up sound
         audioSource.PlayOneShot(levelUpClip);
