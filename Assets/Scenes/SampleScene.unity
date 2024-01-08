@@ -8733,6 +8733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   a_status: {fileID: 11400000, guid: 86cc0b2f18d9e48aaaa5d88f07c12706, type: 2}
   b_status: {fileID: 11400000, guid: 24ced492ec92343e3b8639a390c444a9, type: 2}
+  csv: {fileID: 4900000, guid: beed15887f8f04e728d4831176da5142, type: 3}
   a_hp_object: {fileID: 762286477}
   a_atk_object: {fileID: 714247876}
   a_def_object: {fileID: 49469271}

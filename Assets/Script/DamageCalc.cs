@@ -5,7 +5,8 @@ using UnityEngine;
 public class DamageCalc : MonoBehaviour
 {
     
-    public static int Calc(Status atk, Status def)
+    // how much hp is reduced after attack
+    public static int AtkCalc(Status atk, Status def)
     {
         float dmg_ratio = (float)atk.Atk / (float)(atk.Atk + def.Def);
         int damage = (int)(atk.Atk * dmg_ratio);
@@ -15,10 +16,21 @@ public class DamageCalc : MonoBehaviour
         return damage;
     }
 
-    private void AtkCalc()
+    // how much defence is reduced after attack
+    public static int DefCalc(Status atk, Status def)
     {
 
+        float dmg_ratio = (float)atk.Atk / (float)(atk.Atk + def.Def);
+        return (int)((float)atk.Atk * (1.0f - dmg_ratio) * 0.2f);;
     }
+
+    private static int DamageCalculation()
+    {
+        // 基礎攻撃 x ダメージアップ x クリティカル x ダメージ倍率
+        return 0;
+    }
+
+
 
     public enum StatusType
     {

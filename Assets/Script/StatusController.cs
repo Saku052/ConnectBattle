@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 using DG.Tweening;  
 
 public class StatusController : MonoBehaviour
@@ -10,6 +11,10 @@ public class StatusController : MonoBehaviour
     // get status scriptable object
     [SerializeField] private Status a_status;
     [SerializeField] private Status b_status;
+
+    // place data inside this array
+    public static string[,] Statusdata;
+    [SerializeField] private TextAsset csv;
 
     // get status object
     [SerializeField] GameObject a_hp_object;
@@ -32,8 +37,10 @@ public class StatusController : MonoBehaviour
 
 
 
-    private void Start()
+    private async void Start()
     {
+        // complete reading csv
+        await ReadCsv(csv);
 
         GetSlider(a_hp_object).maxValue = a_status.MaxHp;
         GetSlider(a_atk_object).maxValue = a_status.MaxAtk;
@@ -60,14 +67,9 @@ public class StatusController : MonoBehaviour
 
     public void AttackA()
     {
-        // do damage
-        float dmg_ratio = (float)a_status.Atk / (float)(a_status.Atk + b_status.Def) ;
-        int damage = (int)(a_status.Atk * dmg_ratio);
-        if (damage < 0)
-            damage = 0;
-
-        b_status.Hp -= damage;
-        b_status.Def -= (int)((float)a_status.Atk * (1.0f - dmg_ratio) * 0.2f);
+        // reduce hp and def
+        b_status.Hp -= DamageCalc.AtkCalc(a_status, b_status);
+        b_status.Def -= DamageCalc.DefCalc(a_status, b_status);
 
         // gain exp when enemy is dead
         if (b_status.Hp <= 0)
@@ -80,14 +82,9 @@ public class StatusController : MonoBehaviour
 
     public void AttackB()
     {
-        // do damage
-        float dmg_ratio = (float)b_status.Atk / (float)(b_status.Atk + a_status.Def);
-        int damage = (int)(b_status.Atk * dmg_ratio);
-        if (damage < 0)
-            damage = 0;
 
-        a_status.Hp -= damage;
-        a_status.Def -= (int)((float)b_status.Atk * (1.0f - dmg_ratio) * 0.2f);
+        a_status.Hp -= DamageCalc.AtkCalc(b_status, a_status);
+        a_status.Def -= DamageCalc.DefCalc(b_status, a_status);
         
         // gain exp when enemy is dead
         if (a_status.Hp <= 0)
@@ -172,8 +169,6 @@ public class StatusController : MonoBehaviour
         GetSlider(b_exp_object).maxValue = b_status.MaxExp;
     }
 
-
-
     // Get slider from object
     private Slider GetSlider(GameObject obj)
     {
@@ -184,6 +179,32 @@ public class StatusController : MonoBehaviour
     {
         return obj.transform.GetChild(1).GetComponent<Text>();
     }
+
+    // Read csv
+    private Task ReadCsv(TextAsset csv)
+    {
+        // read csv
+        string[] lines = csv.text.Split('\n');
+
+        // get row and column
+        int rows = lines.Length;
+        int columns = lines[0].Split(',').Length;
+
+        // initialize array
+        Statusdata = new string[rows, columns];
+
+        // place data inside array
+        for (int i = 0; i < rows; i++)
+        {
+            string[] data = lines[i].Split(',');
+            for (int j = 0; j < columns; j++)
+            {
+                Statusdata[i, j] = data[j];
+            }
+        }
+        return Task.CompletedTask;
+    }
+
 
 
     // make an instance
