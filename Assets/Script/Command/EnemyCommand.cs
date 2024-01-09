@@ -106,7 +106,6 @@ public class EnemyCommand : MonoBehaviour
             }
             scoreMapString += "\n";
         }
-        Debug.Log(scoreMapString);
 
 
         // select random maxXY

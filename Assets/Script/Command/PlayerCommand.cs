@@ -16,6 +16,7 @@ public class PlayerCommand : MonoBehaviour
         if ((MapControl.selected_button != null) &&
             (Map.GameMap[x, y] == Map.map.Selected))
         {
+            
             Map.GameMap[x, y] = Map.map.A;
             MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
 

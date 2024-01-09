@@ -41,6 +41,9 @@ public class StatusController : MonoBehaviour
     {
         // complete reading csv
         await ReadCsv(csv);
+        await GetStatus(1);
+        a_status.Level = 1;
+        a_status.Exp = 0;
 
         GetSlider(a_hp_object).maxValue = a_status.MaxHp;
         GetSlider(a_atk_object).maxValue = a_status.MaxAtk;
@@ -66,7 +69,7 @@ public class StatusController : MonoBehaviour
 
 
     public void AttackA()
-    {
+    {   
         // reduce hp and def
         b_status.Hp -= DamageCalc.AtkCalc(a_status, b_status);
         b_status.Def -= DamageCalc.DefCalc(a_status, b_status);
@@ -96,17 +99,17 @@ public class StatusController : MonoBehaviour
 
 
     // Level up
-    public void Levelup(Status status, int exp)
+    public async void Levelup(Status status, int exp)
     {
+
         // level up
-        status.Level += 1;
+        status.Level++;
+
         // update max value
-        status.MaxHp = (int)(status.MaxHp * 1.03f+ 9.5f);
-        status.MaxAtk = (int)(status.MaxAtk * 1.02f + 7.3f);
-        status.MaxDef = (int)(status.MaxDef * 1.02f +5.8f);
-        status.MaxExp = (int)(status.MaxExp * 1.1f);
+        await GetStatus(status.Level);
+
         // update value
-        status.Exp = exp;
+        a_status.Exp = exp;
 
         // update max value
         UpdateMaxValueA();
@@ -202,6 +205,22 @@ public class StatusController : MonoBehaviour
                 Statusdata[i, j] = data[j];
             }
         }
+        return Task.CompletedTask;
+    }
+
+    // Get status from csv
+    public Task GetStatus(int level)
+    {
+        a_status.MaxHp = int.Parse(Statusdata[level, 1]);
+        a_status.MaxAtk = int.Parse(Statusdata[level, 2]);
+        a_status.MaxDef = int.Parse(Statusdata[level, 3]);
+        a_status.CritRate = int.Parse(Statusdata[level, 4]);
+        a_status.CritDmg = int.Parse(Statusdata[level, 5]);
+
+        a_status.Hp = a_status.MaxHp;
+        a_status.Atk = a_status.MaxAtk*2/3;
+        a_status.Def = a_status.MaxDef;
+
         return Task.CompletedTask;
     }
 

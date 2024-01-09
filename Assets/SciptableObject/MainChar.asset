@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72895f98f63ec40a98533b0f285e8536, type: 3}
-  m_Name: Char3Status
+  m_Name: MainChar
   m_EditorClassIdentifier: 
-  MaxLevel: 8
-  MaxHp: 144
-  MaxAtk: 69
-  MaxDef: 78
-  MaxExp: 60
-  ExpRate: 2.2
-  _level: 2
+  MaxLevel: 20
+  _level: 1
+  MalWare: {fileID: 11400000, guid: f4c16f80151664b47a1df59ad37b9ea0, type: 2}
+  MaxHp: 145
+  MaxAtk: 65
+  MaxDef: 70
+  MaxExp: 27
+  CritRate: 0
+  CritDmg: 0
+  ExpRate: 2.5

@@ -5,13 +5,21 @@ public class Status : ScriptableObject
 {
 
     public int MaxLevel;
+    public int _level;
+
+    // MalWare scriptable object
+    public MalWare MalWare;
+
+
+
     public int MaxHp;
     public int MaxAtk;
     public int MaxDef;
     public int MaxExp;
-
+    public int CritRate;
+    public int CritDmg;
     public float ExpRate;
-    public int _level;
+    
 
     private int _hp;
     private int _atk;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageCalc : MonoBehaviour
+public static class DamageCalc
 {
     
     // how much hp is reduced after attack
@@ -24,7 +24,7 @@ public class DamageCalc : MonoBehaviour
         return (int)((float)atk.Atk * (1.0f - dmg_ratio) * 0.2f);;
     }
 
-    private static int DamageCalculation()
+    public static int DamageCalculation()
     {
         // 基礎攻撃 x ダメージアップ x クリティカル x ダメージ倍率
         return 0;

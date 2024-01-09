@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72895f98f63ec40a98533b0f285e8536, type: 3}
-  m_Name: Char2Status
+  m_Script: {fileID: 11500000, guid: 416aaafb99db448e8a9d804abc1f61a8, type: 3}
+  m_Name: AtkUp
   m_EditorClassIdentifier: 
-  MaxLevel: 50
-  MaxHp: 145
-  MaxAtk: 65
-  MaxDef: 70
-  MaxExp: 100
-  ExpRate: 2.5
-  _level: 1
+  MaxLevel: 20
+  MainStat: 50
+  MainStatType: 1

@@ -25,9 +25,6 @@ public class MapControl : MonoBehaviour
         int x = xy[0];
         int y = xy[1];
 
-        // checking the button number
-        Debug.Log("Button " + button_number + " clicked. x = " + x + ", y = " + y);
-
         // select location if the button is empty
         if (Map.GameMap[x, y] == Map.map.None)
         {
