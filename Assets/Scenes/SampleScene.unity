@@ -11187,8 +11187,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1619309206}
-        m_TargetAssemblyTypeName: Comand, Assembly-CSharp
-        m_MethodName: Attack
+        m_TargetAssemblyTypeName: PlayerCommand, Assembly-CSharp
+        m_MethodName: CrackAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12049,8 +12049,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1619309206}
-        m_TargetAssemblyTypeName: Comand, Assembly-CSharp
-        m_MethodName: Attack
+        m_TargetAssemblyTypeName: PlayerCommand, Assembly-CSharp
+        m_MethodName: burstAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

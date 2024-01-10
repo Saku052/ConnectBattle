@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 416aaafb99db448e8a9d804abc1f61a8, type: 3}
-  m_Name: AtkUp
+  m_Name: DmgUpMal
   m_EditorClassIdentifier: 
-  MaxLevel: 20
+  MalWareName: "\u6B63\u7FA9\u306E\u5965\u5DDE"
+  MalWareDescription: "\u7279\u6B8A\u52B9\u679C\u306A\u3057"
+  MalWareImage: {fileID: 0}
+  MalWarePrice: 100
+  MalWareRank: 1
+  BasicStat: 232
   MainStat: 50
-  MainStatType: 1
+  BasicStatType: 0
+  MainStatType: 0

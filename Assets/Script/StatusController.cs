@@ -68,16 +68,35 @@ public class StatusController : MonoBehaviour
     }
 
 
-    public void AttackA()
+    public void CrackAttack()
     {   
-        // reduce hp and def
-        b_status.Hp -= DamageCalc.AtkCalc(a_status, b_status);
-        b_status.Def -= DamageCalc.DefCalc(a_status, b_status);
+        // get Change in status after attack
+        (Status main, Status enemy) = a_status.MalWare.Crack(a_status, b_status);
+
+        a_status = main;
+        b_status = enemy;
 
         // gain exp when enemy is dead
         if (b_status.Hp <= 0)
             a_status.Exp += b_status.MaxExp;
 
+
+        UpdateValueA();
+        UpdateValueB();
+    }
+
+
+    public void BurstAttack()
+    {
+        // get Change in status after attack
+        (Status main, Status enemy) = a_status.MalWare.Burst(a_status, b_status);
+
+        a_status = main;
+        b_status = enemy;
+
+        // gain exp when enemy is dead
+        if (b_status.Hp <= 0)
+            a_status.Exp += b_status.MaxExp;
 
         UpdateValueA();
         UpdateValueB();
@@ -211,9 +230,13 @@ public class StatusController : MonoBehaviour
     // Get status from csv
     public Task GetStatus(int level)
     {
-        a_status.MaxHp = int.Parse(Statusdata[level, 1]);
-        a_status.MaxAtk = int.Parse(Statusdata[level, 2]);
-        a_status.MaxDef = int.Parse(Statusdata[level, 3]);
+        a_status.MaxHp = 
+        DamageCalc.DamageCalculation(DamageCalc.StatusType.HpRate, int.Parse(Statusdata[level, 1]), a_status.MalWare);
+        a_status.MaxAtk =
+        DamageCalc.DamageCalculation(DamageCalc.StatusType.AtkRate, int.Parse(Statusdata[level, 2]), a_status.MalWare);
+        a_status.MaxDef =
+        DamageCalc.DamageCalculation(DamageCalc.StatusType.DefRate, int.Parse(Statusdata[level, 3]), a_status.MalWare);
+
         a_status.CritRate = int.Parse(Statusdata[level, 4]);
         a_status.CritDmg = int.Parse(Statusdata[level, 5]);
 
