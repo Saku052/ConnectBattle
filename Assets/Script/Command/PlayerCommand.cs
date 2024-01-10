@@ -19,9 +19,11 @@ public class PlayerCommand : MonoBehaviour
             Map.GameMap[x, y] = Map.map.A;
             MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
 
+            // activate crack attack
             StatusController.statusController.CrackAttack();
 
-            EnemyCommand.enemyCommand.Attack();
+            // start enemy turn
+            TurnCommand.turnCommand.EnemyTurn();
         }
     }
 
@@ -39,9 +41,11 @@ public class PlayerCommand : MonoBehaviour
             Map.GameMap[x, y] = Map.map.A;
             MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
 
+            // activate burst attack
             StatusController.statusController.BurstAttack();
 
-            EnemyCommand.enemyCommand.Attack();
+            // start enemy turn
+            TurnCommand.turnCommand.EnemyTurn();
         }
     }
 }
