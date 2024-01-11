@@ -14423,7 +14423,6 @@ GameObject:
   - component: {fileID: 1619309205}
   - component: {fileID: 1619309206}
   - component: {fileID: 1619309207}
-  - component: {fileID: 1619309208}
   m_Layer: 5
   m_Name: SniperGrid
   m_TagString: Untagged
@@ -14621,22 +14620,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPanel: {fileID: 1619309201}
---- !u!114 &1619309208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619309201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224f3998d9c694e15afa9bb94760caf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTurnAnimator: {fileID: 2072453931}
-  enemyTurnAnimator: {fileID: 694456714}
-  crackButton: {fileID: 1234179446}
-  burstButton: {fileID: 1335263949}
 --- !u!1 &1629718562
 GameObject:
   m_ObjectHideFlags: 0
@@ -19198,6 +19181,7 @@ GameObject:
   - component: {fileID: 2072453930}
   - component: {fileID: 2072453929}
   - component: {fileID: 2072453931}
+  - component: {fileID: 2072453932}
   m_Layer: 5
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -19293,6 +19277,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2072453932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072453927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224f3998d9c694e15afa9bb94760caf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTurnAnimator: {fileID: 2072453931}
+  enemyTurnAnimator: {fileID: 694456714}
+  crackButton: {fileID: 1234179446}
+  burstButton: {fileID: 1335263949}
 --- !u!1 &2076532696
 GameObject:
   m_ObjectHideFlags: 0

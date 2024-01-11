@@ -28,19 +28,30 @@ public class TurnCommand : MonoBehaviour
     // Wait 0.5 seconds
     IEnumerator StartMainTurn()
     {
-        yield return new WaitForSeconds(0.5f);
-
         // set playerTurnAnimator to true
-        playerTurnAnimator.SetFloat(Animator.StringToHash("PlayerFloat"), 1);
+        playerTurnAnimator.SetBool("PlayerTurn", true);
+
         // set enemyTurnAnimator to false
-        enemyTurnAnimator.SetFloat(Animator.StringToHash("EnemyFloat"), -1);
+        enemyTurnAnimator.SetBool("EnemyTurn", false);
+
+        // alert observations to player
+
 
         yield return new WaitForSeconds(2.5f);
-        enemyTurnAnimator.SetFloat(Animator.StringToHash("EnemyFloat"), -1.1f);
 
         // enable buttons
         crackButton.interactable = true;
         burstButton.interactable = true;
+    }
+
+    public void endMfunction()
+    {
+        Debug.Log("endMfunction");
+    }
+
+    public void endEBfunction()
+    {
+        Debug.Log("endEBfunction");
     }
 
     // Wait 0.5 seconds
@@ -53,13 +64,10 @@ public class TurnCommand : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // set playerTurnAnimator to false
-        playerTurnAnimator.SetFloat(Animator.StringToHash("PlayerFloat"), -1);
+        playerTurnAnimator.SetBool("PlayerTurn", false);;
         // set enemyTurnAnimator to true
-        enemyTurnAnimator.SetFloat(Animator.StringToHash("EnemyFloat"), 1);
+        enemyTurnAnimator.SetBool("EnemyTurn", true);
        
-        yield return new WaitForSeconds(2.5f);
-        playerTurnAnimator.SetFloat(Animator.StringToHash("PlayerFloat"), -1.1f);
-
 
         // TODO : delete here
         // start player turn
