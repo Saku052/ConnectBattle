@@ -90,7 +90,7 @@ public class StatusController : MonoBehaviour
     {
         // get Change in status after attack
         (Status main, Status enemy) = a_status.MalWare.Burst(a_status, b_status);
-
+        
         a_status = main;
         b_status = enemy;
 
