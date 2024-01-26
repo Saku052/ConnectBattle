@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   MaxLevel: 8
-  _level: 2
+  _level: 5
   MalWare: {fileID: 0}
-  MaxHp: 144
-  MaxAtk: 69
-  MaxDef: 78
+  MaxHp: 430
+  MaxAtk: 140
+  MaxDef: 90
   MaxExp: 35
-  CritRate: 0
-  CritDmg: 0
+  CritRate: 5
+  CritDmg: 50
   ExpRate: 2.2

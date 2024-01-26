@@ -91,10 +91,12 @@ public class StatusController : MonoBehaviour
     public void BurstAttack()
     {
         // get Change in status after attack
-        (Status main, Status enemy) = a_status.MalWare.Burst(a_status, b_status);
+        (Status main, Status enemy, int return_damage) = a_status.MalWare.Burst(a_status, b_status);
         
         a_status = main;
         b_status = enemy;
+
+        DamageAnimationCommand.damageAnimationCommand.DamageAnima(return_damage);
 
         // gain exp when enemy is dead
         if (b_status.Hp <= 0)
