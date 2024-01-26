@@ -19,5 +19,5 @@ MonoBehaviour:
   MalWareRank: 1
   BasicStat: 232
   MainStat: 50
-  BasicStatType: 0
+  BasicStatType: 1
   MainStatType: 0

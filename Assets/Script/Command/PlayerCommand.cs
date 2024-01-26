@@ -22,8 +22,6 @@ public class PlayerCommand : MonoBehaviour
             // activate crack attack
             StatusController.statusController.CrackAttack();
 
-            DamageAnimationCommand.damageAnimationCommand.DamageAnima();
-
             // start enemy turn
             TurnCommand.turnCommand.EnemyTurn();
         }

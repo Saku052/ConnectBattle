@@ -3999,9 +3999,29 @@ PrefabInstance:
       propertyPath: m_EffectColor.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4490960805627462828, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4490960805627462828, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6932758464596491782, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932758464596491782, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
+      propertyPath: m_Color.b
+      value: 0.15638873
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932758464596491782, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
+      propertyPath: m_Color.g
+      value: 0.09371662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932758464596491782, guid: 86f4a130d30ec439b9a18bd999e90d86, type: 3}
+      propertyPath: m_Color.r
+      value: 0.735849
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

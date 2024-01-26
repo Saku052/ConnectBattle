@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamageAnimationCommand : MonoBehaviour
 {
@@ -9,17 +10,20 @@ public class DamageAnimationCommand : MonoBehaviour
     [SerializeField] private GameObject damageAnimation;
     [SerializeField] private Animator animation;
     // ゲームオブジェクト内のランダムな位置にダメージアニメーションを生成する
-    public void DamageAnima()
+    public void DamageAnima(int return_damage)
     {
-        DamageTextSize(damageAnimation, 500000);
+        DamageTextSize(damageAnimation, return_damage);
 
-        // ダメージアニメーションを生成したゲームオブジェクトの位置をランダムに設定
+        // generate damage animation
         damageAnimation.transform.localPosition = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), 0);
+        // change color of text to red
+        damageAnimation.GetComponent<Text>().color = new Color32(255, 0, 0, 255);
+        // change text to damage amount
+        damageAnimation.GetComponent<Text>().text = return_damage.ToString();
 
-        // アニメーションを再生する
+        // activate damage animation
         animation.GetComponent<Animator>().SetTrigger("DamageTrigger");
         Debug.Log("DamageAnimation");
-
 
     }
 
@@ -27,27 +31,27 @@ public class DamageAnimationCommand : MonoBehaviour
     public void DamageTextSize(GameObject damageText, int damage)
     {
         // ダメージの量によってダメージテキストの大きさを変更
-        if (damage < 100)
+        if (damage < 50)
         {
             damageText.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
-        else if (damage < 1000)
+        else if (damage < 100)
         {
             damageText.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         }
-        else if (damage < 10000)
+        else if (damage < 500)
         {
             damageText.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
-        else if (damage < 100000)
+        else if (damage < 1000)
         {
             damageText.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
         }
-        else if (damage < 1000000)
+        else if (damage < 5000)
         {
             damageText.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        else if (damage < 10000000)
+        else if (damage < 10000)
         {
             damageText.transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
