@@ -48,4 +48,16 @@ public class PlayerCommand : MonoBehaviour
             TurnCommand.turnCommand.EnemyTurn();
         }
     }
+
+    public void start()
+    {
+        // 二重ループを用いたプログラムで、かけ算九九を出力
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int j = 1; j <= 9; j++)
+            {
+                Debug.Log(i + "×" + j + "=" + i * j);
+            }
+        }
+    }
 }

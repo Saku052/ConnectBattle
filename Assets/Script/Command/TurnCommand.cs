@@ -51,6 +51,18 @@ public class TurnCommand : MonoBehaviour
         burstButton.interactable = true;
 
         Debug.Log("endMfunction");
+        
+        string kuku = "";
+        // 二重ループを用いたプログラムで、かけ算九九を出力
+        for (int i = 1; i <= 9; i++)
+        {   
+            kuku += "\n";
+            for (int j = 1; j <= 9; j++)
+            {
+                kuku += i * j + " ";
+            }
+        }
+        Debug.Log(kuku);
     }
 
     // function when main character end animation ends
