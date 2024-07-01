@@ -56,7 +56,7 @@ public class PlayerCommand : MonoBehaviour
         {
             for (int j = 1; j <= 9; j++)
             {
-                Debug.Log(i + "×" + j + "=" + i * j);
+                Debug.Log(i + "x" + j + "=" + i * j);
             }
         }
     }

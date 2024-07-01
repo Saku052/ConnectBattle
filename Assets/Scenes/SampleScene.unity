@@ -19449,8 +19449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTurnAnimator: {fileID: 2072453931}
   enemyTurnAnimator: {fileID: 694456714}
-  crackButton: {fileID: 1234179446}
-  burstButton: {fileID: 1335263949}
+  CrackAttack: {fileID: 1234179446}
+  BurstAttack: {fileID: 1335263949}
 --- !u!114 &2072453933
 MonoBehaviour:
   m_ObjectHideFlags: 0
