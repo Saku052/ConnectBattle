@@ -12,17 +12,16 @@ public class TurnCommandEnemy : MonoBehaviour
     [SerializeField] private Button crackButton;
     [SerializeField] private Button burstButton;
 
-    //enemyTurnEndAnimation
-    public void endEfunction() {
-        EnemyCommand.enemyCommand.Attack();
-        enemyTurnAnimator.SetBool("EnemyTurn", false);
-        
-        Debug.Log("endEfunction");
-    }
-
     public void playerTurnInitAnimation() {
         playerTurnAnimator.SetBool("PlayerTurn", true);
 
         Debug.Log("endEBfunction");
+    }
+
+    public void enemyAttack() {
+        EnemyCommand.enemyCommand.Attack();
+        enemyTurnAnimator.SetBool("EnemyTurn", false);
+        
+        Debug.Log("endEfunction");
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TurnCommand : MonoBehaviour
 {   
-
     [SerializeField] private Animator playerTurnAnimator;
     [SerializeField] private Animator enemyTurnAnimator;
     [SerializeField] private Button CrackAttack;
