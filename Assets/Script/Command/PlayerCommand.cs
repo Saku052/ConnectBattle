@@ -5,19 +5,30 @@ using UnityEngine.UI;
 
 public class PlayerCommand : MonoBehaviour
 {
-    
-    public void CrackAttack()
-    {
-        // get x and y from button number  
+    Color32 color_blue = new Color32(88, 132, 203, 255);
+
+    private bool readyToAttack() {
+
+        int x = MapControl.xy[0];
+        int y = MapControl.xy[1];
+
+        bool buttonSelected = MapControl.selected_button != null;
+        bool mapSelected = Map.GameMap[x, y] == Map.map.Selected;
+
+        return buttonSelected && mapSelected;
+    }
+
+
+    public void CrackAttack() {
+        // get x and y from button number
         int x = MapControl.xy[0];
         int y = MapControl.xy[1];
 
         // if a button is selected than attack
-        if ((MapControl.selected_button != null) &&
-            (Map.GameMap[x, y] == Map.map.Selected))
+        if (readyToAttack())
         {
             Map.GameMap[x, y] = Map.map.A;
-            MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
+            MapControl.selected_button.GetComponent<Image>().color = color_blue;
 
             // activate crack attack
             StatusController.statusController.CrackAttack();
@@ -27,37 +38,22 @@ public class PlayerCommand : MonoBehaviour
         }
     }
 
-    public void burstAttack()
-    {
+    public void burstAttack() {
         // get x and y from button number  
         int x = MapControl.xy[0];
         int y = MapControl.xy[1];
 
         // if a button is selected than attack
-        if ((MapControl.selected_button != null) &&
-            (Map.GameMap[x, y] == Map.map.Selected))
-        {
+        if (readyToAttack()) {
             
             Map.GameMap[x, y] = Map.map.A;
-            MapControl.selected_button.GetComponent<Image>().color = new Color32(88, 132, 203, 255);
+            MapControl.selected_button.GetComponent<Image>().color = color_blue;
 
             // activate burst attack
             StatusController.statusController.BurstAttack();
 
             // start enemy turn
             TurnCommand.turnCommand.EnemyTurn();
-        }
-    }
-
-    public void start()
-    {
-        // 二重ループを用いたプログラムで、かけ算九九を出力
-        for (int i = 1; i <= 9; i++)
-        {
-            for (int j = 1; j <= 9; j++)
-            {
-                Debug.Log(i + "x" + j + "=" + i * j);
-            }
         }
     }
 }
