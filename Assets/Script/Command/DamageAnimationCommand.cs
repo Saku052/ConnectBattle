@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class DamageAnimationCommand : MonoBehaviour
 {
-
-    
     [SerializeField] private GameObject damageAnimation;
     [SerializeField] private Animator animation;
-    // ゲームオブジェクト内のランダムな位置にダメージアニメーションを生成する
-    public void DamageAnima(int return_damage)
-    {
+
+
+    public void DamageAnima(int return_damage) {
         DamageTextSize(damageAnimation, return_damage);
 
-        // generate damage animation
+        
         damageAnimation.transform.localPosition = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), 0);
         // change color of text to red
         damageAnimation.GetComponent<Text>().color = new Color32(255, 0, 0, 255);

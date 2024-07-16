@@ -5,12 +5,19 @@ using UnityEngine.UI;
 
 public class PlayerCommand : MonoBehaviour
 {
-    Color32 color_blue = new Color32(88, 132, 203, 255);
+    private Color32 color_blue = new Color32(88, 132, 203, 255);
+
+    private int x;
+    private int y;
+
+    private void getMapControl() {
+        this.x = MapControl.xy[0];
+        this.y = MapControl.xy[1];
+    }
 
     private bool readyToAttack() {
 
-        int x = MapControl.xy[0];
-        int y = MapControl.xy[1];
+        getMapControl();
 
         bool buttonSelected = MapControl.selected_button != null;
         bool mapSelected = Map.GameMap[x, y] == Map.map.Selected;
@@ -20,14 +27,10 @@ public class PlayerCommand : MonoBehaviour
 
 
     public void CrackAttack() {
-        // get x and y from button number
-        int x = MapControl.xy[0];
-        int y = MapControl.xy[1];
 
-        // if a button is selected than attack
         if (readyToAttack())
         {
-            Map.GameMap[x, y] = Map.map.A;
+            Map.GameMap[this.x, this.y] = Map.map.A;
             MapControl.selected_button.GetComponent<Image>().color = color_blue;
 
             // activate crack attack
@@ -39,14 +42,10 @@ public class PlayerCommand : MonoBehaviour
     }
 
     public void burstAttack() {
-        // get x and y from button number  
-        int x = MapControl.xy[0];
-        int y = MapControl.xy[1];
 
-        // if a button is selected than attack
         if (readyToAttack()) {
             
-            Map.GameMap[x, y] = Map.map.A;
+            Map.GameMap[this.x, this.y] = Map.map.A;
             MapControl.selected_button.GetComponent<Image>().color = color_blue;
 
             // activate burst attack
